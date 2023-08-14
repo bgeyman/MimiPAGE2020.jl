@@ -1,10 +1,12 @@
 #!/usr/bin/env julia
 
+dir_root = "/Users/bengeyman/Documents/GitHub/MimiPAGE2020.jl/"
+
 using Pkg
 Pkg.add("Mimi")
-cd("/Users/bengeyman/Documents/GitHub/MimiPAGE2020.jl/")
+cd(dir_root)
 using Mimi
-include("/Users/bengeyman/Documents/GitHub/MimiPAGE2020.jl/src/main_model.jl")
+include(string(dir_root,"src/main_model.jl"))
 
 # -------------------------------------------------
 # run model with benchmark emissions
@@ -57,7 +59,7 @@ df = DataFrame(perm_sib_ce_co2=m[:PermafrostTotal, :perm_sib_ce_co2], # Mtonne C
 # -- write results to csv -- 
 using CSV
 # define output path as a string
-output_path = "/Users/bengeyman/Downloads/benchmark_1_26.csv"
+output_path = string(output_dir, "benchmark_1_26.csv")
 # write DataFrame to csv
 CSV.write(output_path, df)
 # -------------------------------------------------
@@ -79,7 +81,7 @@ df = DataFrame(perm_sib_ce_co2=m[:PermafrostTotal, :perm_sib_ce_co2], # Mtonne C
 # -- write results to csv -- 
 using CSV
 # define output path as a string
-output_path = "/Users/bengeyman/Downloads/benchmark_2_45.csv"
+output_path = string(output_dir, "benchmark_2_45.csv")
 # write DataFrame to csv
 CSV.write(output_path, df)
 # -------------------------------------------------
@@ -101,7 +103,7 @@ df = DataFrame(perm_sib_ce_co2=m[:PermafrostTotal, :perm_sib_ce_co2], # Mtonne C
 # -- write results to csv -- 
 using CSV
 # define output path as a string
-output_path = "/Users/bengeyman/Downloads/benchmark_5_85.csv"
+output_path = string(output_dir, "benchmark_5_85.csv")
 # write DataFrame to csv
 CSV.write(output_path, df)
 # -------------------------------------------------
@@ -127,7 +129,7 @@ df = DataFrame(perm_sib_ce_co2=m[:PermafrostTotal, :perm_sib_ce_co2], # Mtonne C
 # -- write results to csv -- 
 using CSV
 # define output path as a string
-output_path = "/Users/bengeyman/Downloads/custom_1_26.csv"
+output_path = string(output_dir, "custom_1_26.csv")
 # write DataFrame to csv
 CSV.write(output_path, df)
 # -------------------------------------------------
@@ -149,7 +151,7 @@ df = DataFrame(perm_sib_ce_co2=m[:PermafrostTotal, :perm_sib_ce_co2], # Mtonne C
 # -- write results to csv -- 
 using CSV
 # define output path as a string
-output_path = "/Users/bengeyman/Downloads/custom_2_45.csv"
+output_path = string(output_dir, "custom_2_45.csv")
 # write DataFrame to csv
 CSV.write(output_path, df)
 # -------------------------------------------------
@@ -171,7 +173,7 @@ df = DataFrame(perm_sib_ce_co2=m[:PermafrostTotal, :perm_sib_ce_co2], # Mtonne C
 # -- write results to csv -- 
 using CSV
 # define output path as a string
-output_path = "/Users/bengeyman/Downloads/custom_5_34.csv"
+output_path = string(output_dir, "custom_5_34.csv")
 # write DataFrame to csv
 CSV.write(output_path, df)
 # -------------------------------------------------
@@ -193,7 +195,7 @@ df = DataFrame(perm_sib_ce_co2=m[:PermafrostTotal, :perm_sib_ce_co2], # Mtonne C
 # -- write results to csv -- 
 using CSV
 # define output path as a string
-output_path = "/Users/bengeyman/Downloads/custom_5_85.csv"
+output_path = string(output_dir, "custom_5_85.csv")
 # write DataFrame to csv
 CSV.write(output_path, df)
 # -------------------------------------------------
