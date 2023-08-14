@@ -62,6 +62,17 @@
             v.er_LGemissionsgrowth[:, :] .= 0.
             v.pse_sulphatevsbase[:, :] .= 0.
             v.exf_excessforcing[:] .= 0.
+        # -------------------------------------
+        # BMG 2023-06-09: Added flag to call scenarios
+        # -------------------------------------
+        elseif p.rcp == 2600 || p.rcp == 3400 || p.rcp == 4500 || p.rcp == 8500
+            v.er_CO2emissionsgrowth[:, :] = readpagedata(nothing, "data/Hg_rcps/rcp$(p.rcp)_co2.csv")
+            v.er_CH4emissionsgrowth[:, :] = readpagedata(nothing, "data/Hg_rcps/rcp$(p.rcp)_ch4.csv")
+            v.er_N2Oemissionsgrowth[:, :] = readpagedata(nothing, "data/Hg_rcps/rcp$(p.rcp)_n2o.csv")
+            v.er_LGemissionsgrowth[:, :] = readpagedata(nothing, "data/Hg_rcps/rcp$(p.rcp)_lin.csv")
+            v.pse_sulphatevsbase[:, :] = readpagedata(nothing, "data/Hg_rcps/rcp$(p.rcp)_sulph.csv")
+            v.exf_excessforcing[:] = readpagedata(nothing, "data/Hg_rcps/rcp$(p.rcp)_excess.csv")
+        # -------------------------------------
         else
             v.er_CO2emissionsgrowth[:, :] = readpagedata(nothing, "data/rcps/rcp$(p.rcp)_co2.csv")
             v.er_CH4emissionsgrowth[:, :] = readpagedata(nothing, "data/rcps/rcp$(p.rcp)_ch4.csv")
@@ -189,6 +200,21 @@ function addrcpsspscenario(model::Model, scenario::String)
     elseif scenario == "RCP8.5 & SSP2"
         rcpsspscenario[:rcp] = 85
         rcpsspscenario[:ssp] = 2
+    # -------------------------------------
+    # BMG 2023-06-09: Added scenarios
+    elseif scenario == "custom2.6 & SSP1"
+        rcpsspscenario[:rcp] = 2600
+        rcpsspscenario[:ssp] = 1
+    elseif scenario == "custom3.4 & SSP3"
+        rcpsspscenario[:rcp] = 3400
+        rcpsspscenario[:ssp] = 3
+    elseif scenario == "custom4.5 & SSP2"
+        rcpsspscenario[:rcp] = 4500
+        rcpsspscenario[:ssp] = 2
+    elseif scenario == "custom8.5 & SSP5"
+        rcpsspscenario[:rcp] = 8500
+        rcpsspscenario[:ssp] = 5
+    # -------------------------------------
     else
         error("Unknown scenario")
     end
